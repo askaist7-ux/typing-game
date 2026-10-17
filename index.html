@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <title>한글 타자 연습 게임</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <p class="eyebrow">KOREAN TYPING PRACTICE</p>
+      <h1>한글 타자 연습</h1>
+      <p class="subtitle">문장을 입력하고 나의 타자 실력을 확인해 보세요.</p>
+    </header>
+
+    <section class="game-card" aria-labelledby="game-title">
+      <div class="section-heading">
+        <h2 id="game-title">오늘의 문장</h2>
+        <span id="status" class="status" aria-live="polite">준비</span>
+      </div>
+
+      <div id="prompt" class="prompt" aria-live="polite">문장을 불러오는 중입니다...</div>
+
+      <label class="sr-only" for="typing-input">제시 문장 입력</label>
+      <textarea
+        id="typing-input"
+        rows="3"
+        placeholder="여기에 제시 문장을 그대로 입력하세요."
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        disabled
+      ></textarea>
+
+      <div class="actions">
+        <p id="hint" class="hint">시작하려면 입력창을 누르고 타이핑하세요.</p>
+        <button id="restart-button" class="button button-primary" type="button">다시하기</button>
+      </div>
+
+      <div class="metrics" aria-label="타자 연습 결과">
+        <article class="metric">
+          <span class="metric-label">걸린 시간</span>
+          <strong id="time-result">0.0초</strong>
+        </article>
+        <article class="metric">
+          <span class="metric-label">분당 타수 (CPM)</span>
+          <strong id="cpm-result">0</strong>
+        </article>
+        <article class="metric">
+          <span class="metric-label">정확도</span>
+          <strong id="accuracy-result">100%</strong>
+        </article>
+      </div>
+      <p class="note">타수는 한글 음절을 유니코드 자모로 분해해 계산합니다. 예: 가 = 2타, 한 = 3타.</p>
+    </section>
+
+    <section class="history-card" aria-labelledby="history-title">
+      <div class="section-heading">
+        <h2 id="history-title">최근 기록</h2>
+        <span class="history-count" id="history-count">0 / 5</span>
+      </div>
+      <div id="history-empty" class="history-empty">아직 기록이 없습니다. 첫 연습을 시작해 보세요!</div>
+      <div class="table-wrap">
+        <table id="history-table" hidden>
+          <thead>
+            <tr>
+              <th scope="col">날짜</th>
+              <th scope="col">시간</th>
+              <th scope="col">CPM</th>
+              <th scope="col">정확도</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>짧게 자주 연습하면 타자 실력이 조금씩 늘어납니다.</footer>
+  </main>
+</body>
+</html>
